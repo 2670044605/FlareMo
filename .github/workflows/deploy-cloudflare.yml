@@ -1,6 +1,10 @@
-# 自托管 fork 的手动生产部署。只响应 workflow_dispatch，不在 push 时发布。
-# 上游仓库 realchendahuang/FlareMo 不会跑这个 job。
-# 真正执行的仍是仓库里的 `pnpm deploy`：构建前端、远端 D1 migration、再 wrangler deploy。
+# 自托管 fork / 部署仓库的手动生产部署模板。
+#
+# 这是模板而不是上游仓库的 workflow：复制到部署仓库的
+#   .github/workflows/deploy-cloudflare.yml
+# 然后在 Actions 里手动 Run workflow。只响应 workflow_dispatch，不在 push 时发布；
+# 上游 realchendahuang/FlareMo 不会执行这个 job。
+# 真正执行的仍是仓库里的 pnpm deploy：构建前端、Worker bundle dry-run、应用远端 D1 migration、再 wrangler deploy。
 name: Deploy to Cloudflare
 
 on:
